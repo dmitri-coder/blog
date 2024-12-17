@@ -4,13 +4,15 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 
 Route::get('/', [PublicController::class, 'index'])->name('home');
-Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
+Route::get('/post/{post:slug}', [PublicController::class, 'post'])->name('post');
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
 Route::get('/user/{user}', [PublicController::class, 'user'])->name('user');
 Route::get('/category/{category}', [PublicController::class, 'category'])->name('category');
-
+Route::resource('posts', PostController::class);
 
 
 
@@ -25,8 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function (){
     // Route::get('/admin/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     // Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     // Route::put('/admin/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-    // Route::delete('/admin/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
-    Route::resource('/admin/posts', PostController::class);
+    // Route::delete('/admin/posts{title}/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    // Route::resource('posts', PostController::class);
 });
 
 

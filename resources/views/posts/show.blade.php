@@ -1,6 +1,9 @@
 @extends('partials.layout')
 @section('content')
     <a href="{{url()->previous()}}" class="btn btn-primary">Back</a>
+    <h2 class="mt-4">
+        <a href="{{ route('post', ['post' => $post->slug]) }}">{{ $post->title }}</a>
+    </h2>
     <table class="table table-zebra">
         <tbody>
             <tr>
