@@ -1,14 +1,44 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite('resources/css/app.css')
-</head>
-<body>
-    <button class="bg-blue-500 text-white py-2 px-4 rounded shadow hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
-        Primary
-    </button>
-</body>
-</html>
+@extends('partials.layout')
+@section('content')
+    <div class="flex justify-center">
+        {{ $posts->links() }}
+    </div>
+    <div class="grid-cols-4 grid gap-4">
+        @foreach($posts as $post)
+            <div>
+                <div class="card bg-base-100 shadow-xl min-h-full">
+                    @if($post->image)
+                        <figure>
+                            <img src="{{ $post->image }}"
+                                alt="Shoes" />
+                        </figure>
+                    @endif
+                    <div class="card-body">
+                        <h2 class="card-title">{{ $post->title }}</h2>
+                        <p>{{ $post->snippet }}</p>
+                        <div class="flex flex-row">
+                            <div class="basis-1/2">
+                                <div class="tooltip w-fit" data-tip="{{ $post->created_at }}">
+                                    <p class="text-neutral-content">{{ $post->created_at->diffForHumans() }}</p>
+                                </div>
+                            </div>
+                            @if($post->created_at->notEqualTo($post->updated_at))
+                                <div class="basis-1/2 text-right">
+                                    <div class="tooltip w-fit" data-tip="{{ $post->updated_at }}">
+                                        <p class="text-neutral-content">Edited</p>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
+                        <p class="text-neutral-content">{{ $post->user->name }}</p>
+
+                        <div class="card-actions justify-end">
+                            <a href="{{route('post', ['post'=>$post])}}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection
