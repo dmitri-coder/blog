@@ -4,7 +4,6 @@
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
                 <label class="form-control w-full">
                     <div class="label">
                         <span class="label-text">Email</span>
@@ -16,7 +15,6 @@
                         @enderror
                     </div>
                 </label>
-
                 <label class="form-control w-full">
                     <div class="label">
                         <span class="label-text">Password</span>

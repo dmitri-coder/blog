@@ -21,20 +21,21 @@
                 <li><a>Item 3</a></li>
             </ul>
         </div>
-        <a href="{{route('home')}}" class="btn btn-ghost text-xl">{{ config('app.name') }}</a>
+        <a class="btn btn-ghost text-xl">daisyUI</a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-            {{-- <li><a>Item 1</a></li> --}}
+            <li><a>Item 1</a></li>
             <li>
                 <details>
-                    <summary>Admin</summary>
-                    <ul class="p-2 z-10">
-                        <li><a href="{{route('posts.index')}}">Posts</a></li>
+                    <summary>Parent</summary>
+                    <ul class="p-2">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
                     </ul>
                 </details>
             </li>
-            {{-- <li><a>Item 3</a></li> --}}
+            <li><a>Item 3</a></li>
         </ul>
     </div>
     <div class="navbar-end gap-2">
